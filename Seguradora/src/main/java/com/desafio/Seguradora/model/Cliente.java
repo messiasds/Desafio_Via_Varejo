@@ -1,4 +1,4 @@
-package com.desafio.Seguradora.models;
+package com.desafio.Seguradora.model;
 
 public class Cliente {
 

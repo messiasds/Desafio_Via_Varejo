@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.desafio.Seguradora.model.Apolice;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ApoliceServiceImp implements ApoliceService {
 
     //private final ApoliceRepository apoliceRepositorio;

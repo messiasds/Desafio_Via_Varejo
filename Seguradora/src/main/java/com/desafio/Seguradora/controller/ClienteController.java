@@ -9,13 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.qos.logback.core.joran.conditional.ElseAction;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.desafio.Seguradora.model.Cliente;
 import com.desafio.Seguradora.service.ClienteService;
@@ -47,7 +44,7 @@ public class ClienteController {
         
     }
     @PostMapping("/clientes")
-    public ResponseEntity<?> criarCliente(@RequestBody Cliente cliente ){
+    public ResponseEntity<Object> criarCliente(@RequestBody Cliente cliente ){
 
         if( !clienteService.validarCPF(cliente.getCpf())){
             return ResponseEntity.badRequest().body("CPF inválido");
@@ -59,7 +56,7 @@ public class ClienteController {
     }
 
     @PutMapping("/clientes/{id}")
-    public ResponseEntity<?> editarCliente(@PathVariable int id,
+    public ResponseEntity<Object> editarCliente(@PathVariable int id,
                                            @RequestBody Cliente cliente){
         
     Cliente clienteObj = clienteService.buscarPorId(id);
@@ -81,7 +78,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/clientes/{id}")
-    public ResponseEntity<?> deletarCliente(@PathVariable int id){
+    public ResponseEntity<Object> deletarCliente(@PathVariable int id){
         Cliente cliente = clienteService.apagar(id);
         if(cliente != null)
             return ResponseEntity.ok().build();

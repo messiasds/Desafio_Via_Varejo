@@ -39,7 +39,7 @@ public class ApoliceController {
             
         }
         @PostMapping("/apolices")
-        public ResponseEntity<?> criarApolice(@RequestBody Apolice apolice ){
+        public ResponseEntity<Object> criarApolice(@RequestBody Apolice apolice ){
             
             apoliceService.criar(apolice);
             return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -47,7 +47,7 @@ public class ApoliceController {
         }
     
         @PutMapping("/apolices/{id}")
-        public ResponseEntity<?> editarApolice(@PathVariable int id,
+        public ResponseEntity<Object> editarApolice(@PathVariable int id,
                                                @RequestBody Apolice apolice){
             
         Apolice apoliceObj = apoliceService.buscarPorId(id);
@@ -70,7 +70,7 @@ public class ApoliceController {
         }
     
         @DeleteMapping("/apolices/{id}")
-        public ResponseEntity<?> deletarApolice(@PathVariable int id){
+        public ResponseEntity<Object> deletarApolice(@PathVariable int id){
             Apolice apolice = apoliceService.apagar(id);
             if(apolice != null)
                 return ResponseEntity.ok().build();
@@ -81,4 +81,3 @@ public class ApoliceController {
     
     }
     
-}

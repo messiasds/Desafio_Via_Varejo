@@ -1,30 +1,34 @@
 package com.desafio.Seguradora.service;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
 import com.desafio.Seguradora.dto.ApoliceConsultaDTO;
 import com.desafio.Seguradora.model.Apolice;
 import com.desafio.Seguradora.model.Cliente;
 //import com.desafio.Seguradora.repository.Apolice
-
+import com.desafio.Seguradora.repository.ApoliceRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class ApoliceConsultaImp implements ApoliceConsultaService {
 
     //private final ClienteRepository clienteRepository;
 
-    //@Autowired
-    //private ApoliceRepository apoliceRepository;
+    @Autowired
+    private ApoliceRepository apoliceRepository;
 //
 
     @Override
     public ApoliceConsultaDTO buscarApoliceComDiasVencimentoCalculado(int numero) {
-        //busca apolice no banco
         
-        Apolice apolice = new Apolice();
+        
+        Apolice apolice;
+
+        apolice = apoliceRepository.findById(numero);
 
         ApoliceConsultaDTO apoliceCalculada = null;
 
@@ -53,7 +57,7 @@ public class ApoliceConsultaImp implements ApoliceConsultaService {
         LocalDate vencimento = apolice.getVigenciaFim();
         LocalDate dataHoje = LocalDate.now();
 
-        long dias = ChronoUnit.DAYS.between(vencimento, dataHoje);
+        long dias = ChronoUnit.DAYS.between(dataHoje, vencimento);
 
         if( dias < 0){
             apolice.isVencida(true);

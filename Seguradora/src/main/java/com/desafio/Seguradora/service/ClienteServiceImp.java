@@ -14,11 +14,6 @@ public class ClienteServiceImp implements ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    // public ClienteServiceImp(ClienteRepository clienteRepositorio){
-    //
-    // this.clienteRepositorio = clienteRepositorio;
-    // }
-
     @Override
     public List<Cliente> listarTodos() {
         return clienteRepository.findAll();
@@ -28,7 +23,7 @@ public class ClienteServiceImp implements ClienteService {
     @Override
     public Cliente buscarPorId(String id) {
         return clienteRepository.findById(id).get();
-        
+
     }
 
     @Override
@@ -43,7 +38,7 @@ public class ClienteServiceImp implements ClienteService {
         clienteDestino.setCpf(cliente.getCpf());
         clienteDestino.setNome(cliente.getNome());
         clienteDestino.setUf(cliente.getUf());
-        
+
         return clienteRepository.save(clienteDestino);
     }
 
@@ -51,13 +46,7 @@ public class ClienteServiceImp implements ClienteService {
     public void apagar(String id) {
         Cliente cliente = clienteRepository.findById(id).get();
         clienteRepository.delete(cliente);
-        
-    }
 
-    @Override
-    public Boolean validarCPF(String cpf) {
-        // TODO Auto-generated method stub
-        return true;
     }
 
 }

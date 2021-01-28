@@ -17,14 +17,10 @@ public class ConsultaApoliceController {
     @Autowired
     private ApoliceConsultaImp service;
 
+    @GetMapping("/apolice/{numero}")
+    public ApoliceConsultaDTO buscarApolices(@PathVariable String numero) {
+        return service.buscarApoliceComDiasVencimentoCalculado(numero);
 
-@GetMapping("/apolice/{numero}")
-public ApoliceConsultaDTO buscarApolices(@PathVariable String numero) {
-    return service.buscarApoliceComDiasVencimentoCalculado(numero);
-    
-}
+    }
 
-
-
-    
 }

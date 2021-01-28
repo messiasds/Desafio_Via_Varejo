@@ -9,7 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="apolice")
+@Document(collection = "apolice")
 public class Apolice {
 
     @Id
@@ -29,11 +29,11 @@ public class Apolice {
     @DBRef
     private Cliente cliente;
 
-    public String getId(){
+    public String getId() {
         return this.id;
     }
 
-    public void setId(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -78,11 +78,11 @@ public class Apolice {
 
     }
 
-    public Cliente getCliente(){
+    public Cliente getCliente() {
         return this.cliente;
     }
 
-    public void setCliente(Cliente cliente){
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 

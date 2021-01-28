@@ -12,11 +12,11 @@ public class Cliente {
 
     @Id
     private String id;
-    @NotBlank 
+    @NotBlank
     private String nome;
 
-    @CPF(message="CPF inválido")
-    @Indexed(unique=true)
+    @CPF(message = "CPF inválido")
+    @Indexed(unique = true)
     @NotBlank
     private String cpf;
     @NotBlank
@@ -24,43 +24,43 @@ public class Cliente {
     @NotBlank
     private String uf;
 
-    public String getId(){
+    public String getId() {
         return this.id;
     }
 
-    public void setId(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getNome(){
+    public String getNome() {
         return this.nome;
     }
 
-    public String getCpf(){
+    public String getCpf() {
         return this.cpf;
     }
 
-    public String getCidade(){
+    public String getCidade() {
         return this.cidade;
     }
 
-    public String getUf(){
+    public String getUf() {
         return this.uf;
     }
 
-    public void setNome(String nome){
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setCpf(String cpf){
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public void setCidade(String cidade){
+    public void setCidade(String cidade) {
         this.cidade = cidade;
     }
 
-    public void setUf(String uf){
+    public void setUf(String uf) {
         this.uf = uf;
     }
 

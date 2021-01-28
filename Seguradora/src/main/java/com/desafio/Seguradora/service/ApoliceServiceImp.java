@@ -29,12 +29,14 @@ public class ApoliceServiceImp implements ApoliceService {
     public Apolice buscarPorId(String id) {
 
         return apoliceRepository.findById(id).get();
+               
     }
 
     @Override
     public Apolice salvar(Apolice apolice) {
 
-        Cliente cliente = clienteRepository.findById(apolice.getCliente().getId()).get();
+        Cliente cliente = clienteRepository.findById(apolice.getCliente().getId())
+                                           .orElseThrow(() -> new IllegalArgumentException("Cliente inexistente"));
         apolice.setCliente(cliente);
         return apoliceRepository.save(apolice);
     }
@@ -42,7 +44,9 @@ public class ApoliceServiceImp implements ApoliceService {
     @Override
     public Apolice editar(String id, Apolice apolice) {
         
-        Apolice apoliceEditada = apoliceRepository.findById(id).get();
+        Apolice apoliceEditada = apoliceRepository.findById(id)
+                                                  .orElseThrow(() -> new IllegalArgumentException("Cliente inexistente"));
+        
         apoliceEditada.setCliente(apolice.getCliente());
         apoliceEditada.setNumero(apolice.getNumero());
         apoliceEditada.setPlacaVeiculo(apolice.getPlacaVeiculo());
@@ -58,8 +62,6 @@ public class ApoliceServiceImp implements ApoliceService {
     public void apagar(String id) {
 
         Apolice apolice = apoliceRepository.findById(id).get();
-        //apolice.setCliente(null);
-        //apoliceRepository.save(apolice);
         apoliceRepository.delete(apolice);
     }
 

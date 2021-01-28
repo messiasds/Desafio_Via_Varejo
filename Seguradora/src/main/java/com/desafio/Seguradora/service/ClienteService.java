@@ -15,7 +15,5 @@ public interface ClienteService {
     public Cliente editar(String id, Cliente cliente);
 
     public void apagar(String id);
-
-    public Boolean validarCPF(String cpf);
     
 }

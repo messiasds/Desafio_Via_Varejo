@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import java.util.List;
 
 import javax.validation.Valid;
@@ -24,52 +23,47 @@ import com.desafio.Seguradora.service.ClienteService;
 public class ClienteController {
 
     private final ClienteService clienteService;
-	private Cliente cliente;
+    private Cliente cliente;
 
-    public ClienteController(ClienteService service){
+    public ClienteController(ClienteService service) {
         this.clienteService = service;
     }
-    
+
     @GetMapping("/clientes")
-    public ResponseEntity<List<Cliente>> listarTodos(){
+    public ResponseEntity<List<Cliente>> listarTodos() {
         List<Cliente> clientes = clienteService.listarTodos();
         return ResponseEntity.ok().body(clientes);
-        
+
     }
+
     @GetMapping("/clientes/{id}")
-    public ResponseEntity<Cliente> buscarPorId(@PathVariable String id){
+    public ResponseEntity<Cliente> buscarPorId(@PathVariable String id) {
         Cliente cliente = clienteService.buscarPorId(id);
-        
-        if (cliente != null)  
+
+        if (cliente != null)
             return ResponseEntity.ok().body(cliente);
         else
             return ResponseEntity.notFound().build();
-        
-    }
-    @PostMapping("/clientes")
-    public ResponseEntity<Object> criarCliente(@RequestBody @Valid Cliente cliente ){
 
-        this.cliente = cliente;
-		if( !clienteService.validarCPF(cliente.getCpf())){
-            return ResponseEntity.badRequest().body("CPF inválido");
-        }
-        
+    }
+
+    @PostMapping("/clientes")
+    public ResponseEntity<Object> criarCliente(@RequestBody @Valid Cliente cliente) {
+
         clienteService.salvar(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 
     }
 
     @PutMapping("/clientes/{id}")
-    public ResponseEntity<Object> editarCliente(@PathVariable @Valid String id,
-                                           @RequestBody Cliente cliente){
-        
-    Cliente clienteObj = clienteService.buscarPorId(id);
-    
-    if (clienteObj == null){
-        return ResponseEntity.ok().body(clienteObj);
-    }
-    else
-        ResponseEntity.notFound().build();
+    public ResponseEntity<Object> editarCliente(@PathVariable @Valid String id, @RequestBody Cliente cliente) {
+
+        Cliente clienteObj = clienteService.buscarPorId(id);
+
+        if (clienteObj == null) {
+            return ResponseEntity.ok().body(clienteObj);
+        } else
+            ResponseEntity.notFound().build();
 
         clienteObj.setNome(cliente.getNome());
         clienteObj.setCidade(cliente.getCidade());
@@ -78,21 +72,14 @@ public class ClienteController {
 
         clienteService.salvar(clienteObj);
         return ResponseEntity.ok().build();
-        
+
     }
 
     @DeleteMapping("/clientes/{id}")
-    public ResponseEntity<Object> deletarCliente(@PathVariable String id){
-        //Cliente cliente = clienteService.apagar(id);
-        //if(cliente != null)
-        //    return ResponseEntity.ok().build();
-        //else
-        //    return ResponseEntity.notFound().build();
+    public ResponseEntity<Object> deletarCliente(@PathVariable String id) {
 
         clienteService.apagar(id);
         return ResponseEntity.ok().build();
-        
-
 
     }
 

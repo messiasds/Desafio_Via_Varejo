@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RequestMapping("/consultas")
+@RequestMapping("api/consultas")
 public class ConsultaApoliceController {
 
     @Autowired
@@ -19,7 +19,7 @@ public class ConsultaApoliceController {
 
 
 @GetMapping("/apolice/{numero}")
-public ApoliceConsultaDTO buscarApolices(@PathVariable int numero) {
+public ApoliceConsultaDTO buscarApolices(@PathVariable String numero) {
     return service.buscarApoliceComDiasVencimentoCalculado(numero);
     
 }

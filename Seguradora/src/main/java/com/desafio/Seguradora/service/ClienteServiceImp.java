@@ -1,16 +1,18 @@
 package com.desafio.Seguradora.service;
 
-import java.util.Arrays;
 import java.util.List;
 
 import com.desafio.Seguradora.model.Cliente;
+import com.desafio.Seguradora.repository.ClienteRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteServiceImp implements ClienteService {
 
-    // private final ClienteRepository clienteRepositorio;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     // public ClienteServiceImp(ClienteRepository clienteRepositorio){
     //
@@ -19,52 +21,37 @@ public class ClienteServiceImp implements ClienteService {
 
     @Override
     public List<Cliente> listarTodos() {
-
-        Cliente cliente1 = new Cliente();
-        cliente1.setCidade("cidade1");
-        cliente1.setCpf("cpf1");
-        cliente1.setNome("nome1");
-        cliente1.setUf("uf1");
-
-        Cliente cliente2 = new Cliente();
-        cliente2.setCidade("cidade222");
-        cliente2.setCpf("cpf222");
-        cliente2.setNome("nome222");
-        cliente2.setUf("uf22");
-        Cliente cliente3 = new Cliente();
-        cliente3.setCidade("cidade333");
-        cliente3.setCpf("cpf333");
-        cliente3.setNome("nome333");
-        cliente3.setUf("uf333");
-
-        List<Cliente> lista = Arrays.asList(cliente1, cliente2, cliente3);
-
-        return lista;
+        return clienteRepository.findAll();
 
     }
 
     @Override
-    public Cliente buscarPorId(int id) {
-        // TODO Auto-generated method stub
-        return null;
+    public Cliente buscarPorId(String id) {
+        return clienteRepository.findById(id).get();
+        
     }
 
     @Override
-    public Cliente criar(Cliente cliente) {
-        // TODO Auto-generated method stub
-        return null;
+    public Cliente salvar(Cliente cliente) {
+        return clienteRepository.save(cliente);
     }
 
     @Override
-    public Cliente editar(int id, Cliente cliente) {
-        // TODO Auto-generated method stub
-        return null;
+    public Cliente editar(String id, Cliente cliente) {
+        Cliente clienteDestino = buscarPorId(id);
+        clienteDestino.setCidade(cliente.getCidade());
+        clienteDestino.setCpf(cliente.getCpf());
+        clienteDestino.setNome(cliente.getNome());
+        clienteDestino.setUf(cliente.getUf());
+        
+        return clienteRepository.save(clienteDestino);
     }
 
     @Override
-    public Cliente apagar(int id) {
-        // TODO Auto-generated method stub
-        return null;
+    public void apagar(String id) {
+        Cliente cliente = clienteRepository.findById(id).get();
+        clienteRepository.delete(cliente);
+        
     }
 
     @Override

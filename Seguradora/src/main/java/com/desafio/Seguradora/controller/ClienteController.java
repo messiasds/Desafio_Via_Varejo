@@ -22,6 +22,7 @@ import com.desafio.Seguradora.service.ClienteService;
 public class ClienteController {
 
     private final ClienteService clienteService;
+	private Cliente cliente;
 
     public ClienteController(ClienteService service){
         this.clienteService = service;
@@ -34,7 +35,7 @@ public class ClienteController {
         
     }
     @GetMapping("/clientes/{id}")
-    public ResponseEntity<Cliente> buscarPorId(@PathVariable int id){
+    public ResponseEntity<Cliente> buscarPorId(@PathVariable String id){
         Cliente cliente = clienteService.buscarPorId(id);
         
         if (cliente != null)  
@@ -46,17 +47,18 @@ public class ClienteController {
     @PostMapping("/clientes")
     public ResponseEntity<Object> criarCliente(@RequestBody Cliente cliente ){
 
-        if( !clienteService.validarCPF(cliente.getCpf())){
+        this.cliente = cliente;
+		if( !clienteService.validarCPF(cliente.getCpf())){
             return ResponseEntity.badRequest().body("CPF inválido");
         }
         
-        clienteService.criar(cliente);
+        clienteService.salvar(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 
     }
 
     @PutMapping("/clientes/{id}")
-    public ResponseEntity<Object> editarCliente(@PathVariable int id,
+    public ResponseEntity<Object> editarCliente(@PathVariable String id,
                                            @RequestBody Cliente cliente){
         
     Cliente clienteObj = clienteService.buscarPorId(id);
@@ -72,18 +74,23 @@ public class ClienteController {
         clienteObj.setCpf(cliente.getCpf());
         clienteObj.setUf(cliente.getUf());
 
-        clienteService.criar(clienteObj);
+        clienteService.salvar(clienteObj);
         return ResponseEntity.ok().build();
         
     }
 
     @DeleteMapping("/clientes/{id}")
-    public ResponseEntity<Object> deletarCliente(@PathVariable int id){
-        Cliente cliente = clienteService.apagar(id);
-        if(cliente != null)
-            return ResponseEntity.ok().build();
-        else
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Object> deletarCliente(@PathVariable String id){
+        //Cliente cliente = clienteService.apagar(id);
+        //if(cliente != null)
+        //    return ResponseEntity.ok().build();
+        //else
+        //    return ResponseEntity.notFound().build();
+
+        clienteService.apagar(id);
+        return ResponseEntity.ok().build();
+        
+
 
     }
 

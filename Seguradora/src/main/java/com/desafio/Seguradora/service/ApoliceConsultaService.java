@@ -6,9 +6,9 @@ import com.desafio.Seguradora.model.Cliente;
 
 public interface ApoliceConsultaService {
 
-    public ApoliceConsultaDTO buscarApoliceComDiasVencimentoCalculado(int numero);
+    public ApoliceConsultaDTO buscarApoliceComDiasVencimentoCalculado(String numero);
 
-    public Cliente buscarCliente(int id);
+    public Cliente buscarCliente(String id);
 
     public Object calcularVencimentoApolice(ApoliceConsultaDTO apolice);
 

@@ -20,15 +20,13 @@ public class ApoliceConsultaImp implements ApoliceConsultaService {
 
     @Autowired
     private ApoliceRepository apoliceRepository;
-//
 
     @Override
-    public ApoliceConsultaDTO buscarApoliceComDiasVencimentoCalculado(int numero) {
-        
+    public ApoliceConsultaDTO buscarApoliceComDiasVencimentoCalculado(String numero) {
         
         Apolice apolice;
 
-        apolice = apoliceRepository.findById(numero);
+        apolice = apoliceRepository.findById(numero).get();
 
         ApoliceConsultaDTO apoliceCalculada = null;
 
@@ -46,7 +44,7 @@ public class ApoliceConsultaImp implements ApoliceConsultaService {
     }
 
     @Override
-    public Cliente buscarCliente(int id) {
+    public Cliente buscarCliente(String id) {
         // TODO Auto-generated method stub
         return null;
     }

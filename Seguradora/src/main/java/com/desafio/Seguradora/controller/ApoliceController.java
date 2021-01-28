@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/api")
 public class ApoliceController {
 
         private final ApoliceService apoliceService;
@@ -29,7 +33,7 @@ public class ApoliceController {
             
         }
         @GetMapping("/apolices/{id}")
-        public ResponseEntity<Apolice>buscarPorId(@PathVariable int id){
+        public ResponseEntity<Apolice>buscarPorId(@PathVariable String id){
             Apolice apolice = apoliceService.buscarPorId(id);
             
             if (apolice != null)  
@@ -41,41 +45,26 @@ public class ApoliceController {
         @PostMapping("/apolices")
         public ResponseEntity<Object> criarApolice(@RequestBody Apolice apolice ){
             
-            apoliceService.criar(apolice);
+            apoliceService.salvar(apolice);
             return ResponseEntity.status(HttpStatus.CREATED).build();
     
         }
     
         @PutMapping("/apolices/{id}")
-        public ResponseEntity<Object> editarApolice(@PathVariable int id,
+        public ResponseEntity<Object> editarApolice(@PathVariable String id,
                                                @RequestBody Apolice apolice){
             
-        Apolice apoliceObj = apoliceService.buscarPorId(id);
-        
-        if (apoliceObj == null){
-            return ResponseEntity.ok().body(apoliceObj);
-        }
-        else
-            ResponseEntity.notFound().build();
-    
-            apoliceObj.setNumero(apolice.getNumero());
-            apoliceObj.setPlacaVeiculo(apolice.getPlacaVeiculo());
-            apoliceObj.setValor(apolice.getValor());
-            apoliceObj.setVigenciaInicio(apolice.getVigenciaInicio());
-            apoliceObj.setVigenciaFim(apolice.getVigenciaInicio());
-    
-            apoliceService.criar(apoliceObj);
+            apoliceService.editar(id, apolice);
+       
             return ResponseEntity.ok().build();
             
         }
     
         @DeleteMapping("/apolices/{id}")
-        public ResponseEntity<Object> deletarApolice(@PathVariable int id){
-            Apolice apolice = apoliceService.apagar(id);
-            if(apolice != null)
-                return ResponseEntity.ok().build();
-            else
-                return ResponseEntity.notFound().build();
+        public ResponseEntity<Object> deletarApolice(@PathVariable String id){
+
+            apoliceService.apagar(id);
+            return ResponseEntity.ok().build();
     
         }
     

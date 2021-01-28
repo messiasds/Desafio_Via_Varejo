@@ -1,13 +1,10 @@
 package com.desafio.Seguradora.repository;
 
-import java.util.List;
-
 import com.desafio.Seguradora.model.Apolice;
 
-public interface ApoliceRepository {
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-    public List<Apolice> findAll();
+public interface ApoliceRepository extends MongoRepository<Apolice, String>{
 
-    public Apolice findById(int id);
 
 }

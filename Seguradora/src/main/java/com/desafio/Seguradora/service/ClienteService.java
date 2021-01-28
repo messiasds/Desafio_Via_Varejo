@@ -8,13 +8,13 @@ public interface ClienteService {
 
     public List<Cliente> listarTodos();
 
-    public Cliente buscarPorId(int id);
+    public Cliente buscarPorId(String id);
 
-    public Cliente criar(Cliente cliente);
+    public Cliente salvar(Cliente cliente);
 
-    public Cliente editar(int id, Cliente cliente);
+    public Cliente editar(String id, Cliente cliente);
 
-    public Cliente apagar(int id);
+    public void apagar(String id);
 
     public Boolean validarCPF(String cpf);
     

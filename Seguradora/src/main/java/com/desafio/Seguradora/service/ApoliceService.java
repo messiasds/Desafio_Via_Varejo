@@ -8,12 +8,12 @@ public interface ApoliceService {
 
     public List<Apolice> listarTodos();
 
-    public Apolice buscarPorId(int id);
+    public Apolice buscarPorId(String id);
 
-    public Apolice criar(Apolice apolice);
+    public Apolice salvar(Apolice apolice);
 
-    public Apolice editar(int id, Apolice apolice);
+    public Apolice editar(String id, Apolice apolice);
 
-    public Apolice apagar(int id);
+    public void apagar(String id);
     
 }

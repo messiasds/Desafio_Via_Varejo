@@ -54,8 +54,8 @@ public class ApoliceConsultaServiceTests {
         apolice2.setVigenciaInicio(LocalDate.parse("2019-01-01"));
         apolice2.setVigenciaFim(LocalDate.parse("2021-01-01"));
 
-        Mockito.when(repository.findById(1)).thenReturn(apolice1);
-        Mockito.when(repository.findById(2)).thenReturn(apolice2);
+        Mockito.when(repository.findById("1").get()).thenReturn(apolice1);
+        Mockito.when(repository.findById("2").get()).thenReturn(apolice2);
 
     }
 
@@ -67,7 +67,7 @@ public class ApoliceConsultaServiceTests {
          * fim da apolice 01/01/2023
          **/
 
-        int id = 1;
+        String id = "1";
         boolean estaVencidoEsperado = false;
         ApoliceConsultaDTO apoliceDTO;
 
@@ -84,7 +84,7 @@ public class ApoliceConsultaServiceTests {
          * fim da apolice 01/01/2021
          **/
 
-        int id = 2;
+        String id = "2";
         boolean estaVencidoEsperado = true;
 
         ApoliceConsultaDTO apoliceDTO;

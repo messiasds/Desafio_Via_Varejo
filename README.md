@@ -18,6 +18,11 @@
 
 - Todos os dados serem obrigatório
 
+- Informar status das apolices vencidas 
+
+- Informar a quantos dias venceu ou vai vencer
+
+- 
 
 ## Requisitos não cumpridos
 
@@ -98,7 +103,7 @@
 }
 ```
 
-**/api/consultas/api/apolice/{id} - GET - mostrar dados da apolice e dados do vencimento
+**/api/consultas/api/apolice/{id}** - GET - mostrar dados da apolice e dados do vencimento
 
 
 ### Como executar o projeto
@@ -119,6 +124,13 @@ Para o banco de dados foi utilizado uma imagem do mongoDb no docker
 docker run -d --name mongodb -p 27017:27017 -p 28017:28017 -e AUTH=no mongo
 ```
 
+### Dificuldades
+
+- Manipulação de mongoDB com Spring Data MongoDB - Pesquisarei mais sobre o tema
+
+- Junit e springTest - Algum tempo sem utilizar, perdi algum tempo tentando relembrar como usar 
 
 
-
+@fbocolowski
+@jhefborges
+@rafaelfernandesmendes

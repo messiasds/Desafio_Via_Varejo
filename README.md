@@ -2,17 +2,28 @@
 
 ## Tecnologias
 
-SpringBoot
+- SpringBoot
 
-MongoDb
+- MongoDb
 
-Docker
+- Docker
+
+## Requisitos cumpridos
+
+- CRUD de clientes
+
+- CRUD de apolices
+
+- Validação CPF
+
+- Todos os dados serem obrigatório
+
 
 ## Requisitos não cumpridos
 
-*. Numero da apolice aleatório e único
+- Numero da apolice aleatório e único
 
-*. CPF único
+- CPF único
 
 ## API
 
@@ -57,7 +68,7 @@ Docker
                 "id":"50"
         }
 }
-
+```
 
 **/api/apolices** - GET - listar todos 
 
@@ -94,13 +105,11 @@ Docker
 
 **Backend Spring**
 
-Executar o JAR que está na direto /build/libs/
+Executar o JAR que está na direto /JAR/
 
 ```
 java -jar Seguradora-0.0.1-SNAPSHOT.jar
 ```
-
-
 
 **BD**
 

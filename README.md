@@ -10,6 +10,22 @@ Docker
 
 ### Clientes
 
+** Estrutura do JSON **
+```json
+	
+	"id":"3",
+	"numero":"333",
+	"vigenciaInicio":"2019-01-01",
+	"vigenciaFim":"2021-02-10",
+	"placaVeiculo":"DBZ2222",
+	"valor":"3000",
+	"cliente":{
+		"id":"50"
+	}
+}
+```
+
+
 **/api/clientes** - GET - listar todos  
 **/api/clientes/{id}** - GET - buscar um cliente
 **/api/clientes** - POST - salvar cliente

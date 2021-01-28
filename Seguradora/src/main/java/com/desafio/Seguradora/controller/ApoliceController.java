@@ -2,6 +2,8 @@ package com.desafio.Seguradora.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.desafio.Seguradora.model.Apolice;
 import com.desafio.Seguradora.service.ApoliceService;
 
@@ -43,7 +45,7 @@ public class ApoliceController {
             
         }
         @PostMapping("/apolices")
-        public ResponseEntity<Object> criarApolice(@RequestBody Apolice apolice ){
+        public ResponseEntity<Object> criarApolice(@RequestBody @Valid Apolice apolice ){
             
             apoliceService.salvar(apolice);
             return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -51,7 +53,7 @@ public class ApoliceController {
         }
     
         @PutMapping("/apolices/{id}")
-        public ResponseEntity<Object> editarApolice(@PathVariable String id,
+        public ResponseEntity<Object> editarApolice(@PathVariable @Valid String id,
                                                @RequestBody Apolice apolice){
             
             apoliceService.editar(id, apolice);

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.desafio.Seguradora.model.Cliente;
 import com.desafio.Seguradora.service.ClienteService;
 
@@ -45,7 +47,7 @@ public class ClienteController {
         
     }
     @PostMapping("/clientes")
-    public ResponseEntity<Object> criarCliente(@RequestBody Cliente cliente ){
+    public ResponseEntity<Object> criarCliente(@RequestBody @Valid Cliente cliente ){
 
         this.cliente = cliente;
 		if( !clienteService.validarCPF(cliente.getCpf())){
@@ -58,7 +60,7 @@ public class ClienteController {
     }
 
     @PutMapping("/clientes/{id}")
-    public ResponseEntity<Object> editarCliente(@PathVariable String id,
+    public ResponseEntity<Object> editarCliente(@PathVariable @Valid String id,
                                            @RequestBody Cliente cliente){
         
     Cliente clienteObj = clienteService.buscarPorId(id);

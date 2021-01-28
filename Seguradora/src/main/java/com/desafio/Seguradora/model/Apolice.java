@@ -2,6 +2,9 @@ package com.desafio.Seguradora.model;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,11 +14,18 @@ public class Apolice {
 
     @Id
     private String id;
+    @NotNull
     private int numero;
+    @NotNull
     private LocalDate vigenciaInicio;
+    @NotNull
     private LocalDate vigenciaFim;
+    @NotBlank
     private String placaVeiculo;
+    @NotNull
     private Float valor;
+
+    @NotNull
     @DBRef
     private Cliente cliente;
 

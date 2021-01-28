@@ -1,16 +1,27 @@
 package com.desafio.Seguradora.model;
 
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="cliente")
+@Document(collection = "cliente")
 public class Cliente {
 
     @Id
     private String id;
+    @NotBlank 
     private String nome;
+
+    @CPF(message="CPF inválido")
+    @Indexed(unique=true)
+    @NotBlank
     private String cpf;
+    @NotBlank
     private String cidade;
+    @NotBlank
     private String uf;
 
     public String getId(){

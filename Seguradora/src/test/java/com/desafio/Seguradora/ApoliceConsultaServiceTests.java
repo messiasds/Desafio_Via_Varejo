@@ -3,6 +3,7 @@ package com.desafio.Seguradora;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import com.desafio.Seguradora.dto.ApoliceConsultaDTO;
 import com.desafio.Seguradora.model.Apolice;
@@ -54,8 +55,8 @@ public class ApoliceConsultaServiceTests {
         apolice2.setVigenciaInicio(LocalDate.parse("2019-01-01"));
         apolice2.setVigenciaFim(LocalDate.parse("2021-01-01"));
 
-        Mockito.when(repository.findById("1").get()).thenReturn(apolice1);
-        Mockito.when(repository.findById("2").get()).thenReturn(apolice2);
+        Mockito.when(repository.findById("1")).thenReturn(Optional.of(apolice1));
+        Mockito.when(repository.findById("2")).thenReturn(Optional.of(apolice2));
 
     }
 
